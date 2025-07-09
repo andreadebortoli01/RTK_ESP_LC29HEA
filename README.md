@@ -24,7 +24,7 @@ Questo progetto permette di utilizzare una scheda **ESP32** come ricevitore **GN
   - API REST `/api` per ottenere i dati in formato JSON  
 - 📈 Monitoraggio **IMU** (accelerometro e giroscopio)  
 - ⚙️ Calcolo e visualizzazione del **CPU usage medio**  
-- 🔄 Gestione di **buffer circolari** per log e dati RTCM  
+- 🔄 Gestione di **buffer** per log e dati RTCM  
 
 ---
 
