@@ -48,6 +48,10 @@ int cpuUsageIndex = 0;
 unsigned long lastPrintAcc = 0;
 unsigned long lastPrintPos = 0;
 
+String base64Encode(const String& input);
+String ggaWithChecksum(const char* line);
+float toDecimal(const char* val, const char* dir);
+
 // --- Precisione 3D ---
 float epe3d = -1.0;  // Valore aggiornato dal messaggio $PQTMEPE
 
@@ -63,23 +67,7 @@ void addLog(const String& msg) {
   logPos = (logPos + 1) % MAX_LOG_LINES;
 }
 
-// --- Base64 encode ---
-String base64Encode(const String& input) {
-  const char base64_table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-  String output;
-  int val = 0, valb = -6;
-  for (uint8_t c : input) {
-    val = (val << 8) + c;
-    valb += 8;
-    while (valb >= 0) {
-      output += base64_table[(val >> valb) & 0x3F];
-      valb -= 6;
-    }
-  }
-  if (valb > -6) output += base64_table[((val << 8) >> (valb + 8)) & 0x3F];
-  while (output.length() % 4) output += '=';
-  return output;
-}
+
 
 // --- Configurazione GNSS SOLO RTK + Abilitazione PQTMEPE ---
 void setupGNSS_RTK() {
